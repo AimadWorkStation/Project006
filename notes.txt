@@ -5,4 +5,18 @@ Pages & Featears
 -log
 -users
 -comments
--
+...
+
+- first make the web structutre
+
+- add labreries to use in folders
+
+- Start with admin side
+
+- make a init.php file to make variables shortcut
+
+- start with the languge file
+--english.php arab.php frensh.php...
+
+
+

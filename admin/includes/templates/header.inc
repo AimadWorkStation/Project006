@@ -4,10 +4,10 @@
 	<meta charset="UTF-8">
 	<title>Admin</title>
 
-	<link rel="stylesheet" href="layout/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="layout/css/font-awesome.min.css">
+	<link rel="stylesheet" href="<?php echo $css; ?>bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo $css; ?>font-awesome.min.css">
 	<!-- my css codes -->
-	<link rel="stylesheet" href="layout/css/style.css">
+	<link rel="stylesheet" href="<?php echo $css; ?>style.css">
 </head>
 
 <body>

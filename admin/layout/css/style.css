@@ -1,3 +1,57 @@
+@font-face {
+  font-family: 'mainFontbold';
+  src: url("../fonts/OpenSans-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'mainFontLight';
+  src: url("../fonts/OpenSans-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'mainFontRegular';
+  src: url("../fonts/OpenSans-Regular.ttf") format("truetype");
+}
+.login h4 {
+  font-family: 'mainFontRegular' , sans-serif;
+  font-size: 14px;
+}
 
+body {
+  background-color: #00A1C3;
+}
+
+.login {
+  position: relative;
+  width: 400px;
+  margin: 80px auto;
+  animation-name: loginForm;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+.login input {
+  margin: 15px;
+  background-color: #294f567a;
+}
+.login input:last-of-type {
+  width: 120px;
+}
+.login input:last-of-type:hover {
+  background-color: #13798f;
+}
+.login input:last-of-type:focus {
+  background-color: #13798f;
+}
+.login h4 {
+  font-size: 24px;
+  color: #13798f;
+}
+
+@keyframes loginForm {
+  0% {
+    top: -600px;
+  }
+  100% {
+    top: 80px;
+  }
+}
 
 /*# sourceMappingURL=style.css.map */

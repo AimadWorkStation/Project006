@@ -1,1 +1,72 @@
-// 
+
+$mainfColor : #00A1C3;
+$mainsColor : #13798f;
+@font-face {
+  font-family: 'mainFontbold';
+  src: url('../fonts/OpenSans-Bold.ttf') format('truetype'); 
+} 
+@font-face {
+  font-family: 'mainFontLight';
+  src: url('../fonts/OpenSans-Light.ttf') format('truetype'); 
+} 
+@font-face {
+  font-family: 'mainFontRegular';
+  src: url('../fonts/OpenSans-Regular.ttf') format('truetype'); 
+} 
+
+%mainFontBold{
+	font-family: 'mainFontbold' , sans-serif;
+	font-size: 14px;
+}
+%mainFontLight{
+	font-family: 'mainFontLight' , sans-serif;
+	font-size: 14px;
+}
+
+%mainFontRegular{
+	font-family: 'mainFontRegular' , sans-serif;
+	font-size: 14px;
+}
+
+
+// start Main
+
+body {
+	background-color: $mainfColor;
+}
+
+// end Main
+
+// Start login form
+.login {
+	position: relative;
+	width: 400px;
+	margin: 80px auto;
+	animation-name: loginForm;
+	animation-duration: 3s;
+	animation-fill-mode: forwards;
+	input{
+		margin : 15px;
+		background-color: #294f567a;
+		&:last-of-type{
+			width: 120px;
+			&:hover{
+				background-color: $mainsColor;
+			}
+			&:focus{
+				background-color: $mainsColor;
+			}
+		}
+	}
+	h4{
+		@extend %mainFontRegular;
+	    font-size: 24px;
+    	color: $mainsColor;
+	}
+}
+@keyframes loginForm {
+	0%{top:-600px}
+	100%{top:80px}
+}
+
+// end login form
