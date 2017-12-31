@@ -18,5 +18,11 @@ Pages & Featears
 - start with the languge file
 --english.php arab.php frensh.php...
 
+- create the database and create the login page for admin 
+
+- make the logout page easy to do
+
+- 
+
 
 

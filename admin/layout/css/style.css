@@ -16,7 +16,7 @@
 }
 
 body {
-  background-color: #00A1C3;
+  background-color: #edf0f1;
 }
 
 .login {
@@ -52,6 +52,27 @@ body {
   100% {
     top: 80px;
   }
+}
+.navbar .nav-Brand {
+  text-decoration: none;
+  font-size: 18px;
+  /* padding-right: 20px; */
+  color: #6f8482;
+  font-weight: bold;
+}
+.navbar .navbar-right .btn-secondary {
+  color: #9e9696;
+  background-color: #e2e5e8;
+  border-color: #d5d8da;
+}
+.navbar .navbar-right .dropdown-menu {
+  text-align: center !important;
+  background-color: #edf0f1 !important;
+}
+.navbar .navbar-right .dropdown-menu > li > a {
+  text-decoration: none !important;
+  color: #898b8e !important;
+  font-size: 15px;
 }
 
 /*# sourceMappingURL=style.css.map */

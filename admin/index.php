@@ -1,8 +1,17 @@
 <?php 
-	
+	session_start();
+	//print_r($_SESSION);
+
+	$noNavbar ='';
+	$pageTitle = 'Login';
+
+
+	//if ther is a session named by username go directly to dashboard page
+	if(isset($_SESSION['Username']))
+		header('Location: dashboard.php');
+	//including most important files
 	include 'init.php';
-	include $tpl. 'header.inc';
-	include 'includes/languages/english.php';
+	
 
 	//make sur it is http POST request
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -11,13 +20,22 @@
 		$hashedPass = sha1($password);
 
 		//check if user existe in database
-		$stmt = $con->prepare("Select Username,Password from users where Username = ? and Password = ? and GroupID=1");
+		$stmt = $con->prepare("Select UserID, Username,Password from users where Username = ? and Password = ? and GroupID=1 LIMIT 1");
 		$stmt->execute(array($username, $hashedPass));
+
+		//get data as array
+		$row = $stmt->fetch();
 
 		$nbOfResult = $stmt -> rowCount();
 		
 		if($nbOfResult > 0){
-			echo "Welcom ".$username;
+			//register Session name
+			$_SESSION['Username'] = $username;
+			//register user id session
+			$_SESSION['ID'] = $row['UserID'];
+			header('Location: dashboard.php');
+
+
 		}
 
 	}

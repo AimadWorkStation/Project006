@@ -32,7 +32,7 @@ $mainsColor : #13798f;
 // start Main
 
 body {
-	background-color: $mainfColor;
+	background-color: #edf0f1;
 }
 
 // end Main
@@ -70,3 +70,40 @@ body {
 }
 
 // end login form
+
+// start navbar
+.navbar{
+	
+	.nav-Brand{
+		text-decoration: none;
+	    font-size: 18px;
+	    /* padding-right: 20px; */
+	    color: #6f8482;
+	    font-weight: bold;
+	}
+
+	.navbar-right{
+		
+		.btn-secondary{
+			        color: #9e9696;
+    				background-color: #e2e5e8;
+    				border-color: #d5d8da;
+    				padding: 5px 30px;
+				}
+
+		.dropdown-menu{
+		    text-align: center !important;
+    		background-color: #edf0f1 !important;
+			
+			& > li {
+				& > a{
+					text-decoration: none !important;
+				    color: #898b8e !important;
+    				font-size: 15px;
+					}
+			}
+		}
+	}
+}
+
+// end navbar 
