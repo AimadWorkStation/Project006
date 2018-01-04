@@ -64,6 +64,7 @@ body {
   color: #9e9696;
   background-color: #e2e5e8;
   border-color: #d5d8da;
+  padding: 5px 30px;
 }
 .navbar .navbar-right .dropdown-menu {
   text-align: center !important;
@@ -73,6 +74,13 @@ body {
   text-decoration: none !important;
   color: #898b8e !important;
   font-size: 15px;
+}
+
+.table-responsive {
+  border-radius: 14px;
+}
+.table-responsive .mainTable tr:first-of-type td {
+  background-color: #007BFF;
 }
 
 /*# sourceMappingURL=style.css.map */

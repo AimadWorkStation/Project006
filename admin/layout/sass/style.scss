@@ -107,3 +107,18 @@ body {
 }
 
 // end navbar 
+
+//start table manage users
+
+.table-responsive{
+	border-radius : 14px;
+	.mainTable{
+		tr{
+			&:first-of-type{
+				td{
+					background-color : #007BFF;
+				}
+			}
+		}
+	}
+}
