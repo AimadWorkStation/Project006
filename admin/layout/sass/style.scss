@@ -119,6 +119,17 @@ body {
 					background-color : #007BFF;
 				}
 			}
+			td{
+				
+				i{
+					padding: 0 9px 0 7px;
+					font-size: 20px !important;
+					&:first-of-type {
+					    margin-right: 6px;
+					}
+				}
+			}
+
 		}
 	}
 }

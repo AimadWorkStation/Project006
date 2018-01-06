@@ -82,5 +82,12 @@ body {
 .table-responsive .mainTable tr:first-of-type td {
   background-color: #007BFF;
 }
+.table-responsive .mainTable tr td i {
+  padding: 0 9px 0 7px;
+  font-size: 20px !important;
+}
+.table-responsive .mainTable tr td i:first-of-type {
+  margin-right: 6px;
+}
 
 /*# sourceMappingURL=style.css.map */

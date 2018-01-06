@@ -14,4 +14,15 @@
 		}
 	}
 	
+	/*
+	--for any error at any page redirect to -> v2.0
+	function($errorMsg,$page, $secondBeforeRedirecting)
+	 */
 
+	function redirectHome($Msg,$page,$second = 3){
+		echo $Msg;
+		echo "<div class='alert alert-info'>redirect in ". $second ." seconds.";
+
+		header("refresh: $second; url=$page");
+		exit();
+	}

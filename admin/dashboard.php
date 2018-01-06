@@ -5,7 +5,7 @@
 		$pageTitle = 'Dashboard';
 		include 'init.php';
 
-		print_r($_SESSION);
+		echo "main dashbord";
 
 		include $tpl. 'footer.inc';
 	}

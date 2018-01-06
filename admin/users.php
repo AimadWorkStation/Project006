@@ -3,7 +3,7 @@
 	//manage users pages
 
 	session_start();
-	$pageTitle ="User ".$_SESSION['Username'];
+	$pageTitle ="User " . strtoupper($_SESSION['Username']);
 	if(isset($_SESSION['Username'])){
 		include 'init.php';
 
@@ -38,7 +38,7 @@
 								while ($row = $stmt->fetch()) { 
 
 							 ?>
-								<tr>
+								<tr id="tr<?php echo $row['UserID']; ?>">
 									<td><?php echo $row['UserID']; ?></td>
 									<td><?php echo $row['UserName']; ?></td>
 									<td><?php echo $row['Email']; ?></td>
@@ -47,7 +47,7 @@
 									<td><?php echo $row['City']; ?></td>
 									<td></td>
 									<td>
-										<a href=""><i class="fa fa-trash-o fa-2x fa-fw"></i></a>
+										<a href="" onclick="return deletUser(<?php echo $row['UserID']; ?>);"><i class="fa fa-trash-o fa-2x fa-fw"></i></a>
 			      						<a href="users.php?do=Edit&userid=<?php  echo $row['UserID'];  ?>"><i class="fa fa-pencil-square-o fa-2x fa-fw"></i></a>
 									</td>
 								</tr>
@@ -77,7 +77,10 @@
 									  <div class="form-row">
 									  	<div class="form-group col-md-12">
 									      <label for="username">Username</label>
-									      <input type="text" class="form-control" name="username" placeholder="Username" required>
+									      <input type="text" id="usernameVerif" class="form-control" name="username" placeholder="Username" autocomplete="off" required>
+										  <label id='usernameErrorfalse' style="color: red;display: none;">Sorry but this username already existe</label>
+										  <label id='usernameErrortrue' style="color: green;display: none;">username valide</label>
+										  <label id='usernamelength' style="color: blue;display: none;">username must be more then 5 charactere</label>
 									    </div>
 									    <div class="form-group col-md-6">
 									      <label for="userfullname">User Full Name</label>
@@ -109,7 +112,7 @@
 
 									  <!-- if succeeded or not show message-->
 									  <?php if(isset($succeed)){
-									  	echo $succeed;	;
+									  		echo $succeed;	;
 									  } ?>
 									</form>
 						</div>
@@ -144,12 +147,13 @@
 						$stmt = $con -> prepare("insert into users(username,password,FullName, Email,adresse, city) values(?,?,?,?,?,?)");
 						$stmt -> execute(array($username,$pass,$fullname,$email,$address,$city));
 						
-						echo $succeed = "<div class='alert alert-success alert-dismissible fade show w-50 h-25 mt-5 ml-auto mr-auto' role='alert'>
+						$succeed = "<div class='alert alert-success alert-dismissible fade show w-50 h-25 mt-5 ml-auto mr-auto' role='alert'>
 									  				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
 												    <span aria-hidden='true'>&times;</span>
 												  	</button>
 												  <strong>Well done!</strong> user added successfully.
 												</div>";
+						redirectHome($succeed,'users.php');
 
 					} catch (Exception $e) {
 						echo $wrongpass = "<div class='alert alert-warning alert-dismissible fade show' 	role='alert'>
@@ -162,12 +166,13 @@
 				}
 				else
 				{
-					echo $wrongpass = "<div class='alert alert-danger alert-dismissible fade show w-50 mt-5 ml-auto mr-auto' 	role='alert'>
+					$wrongpass = "<div class='alert alert-danger alert-dismissible fade show w-50 mt-5 ml-auto mr-auto' 	role='alert'>
 									  				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
 												    <span aria-hidden='true'>&times;</span>
 												  	</button>
 												  <strong>Oh Snap!</strong> U cant access this page !!.
 												</div>";
+					redirectHome($wrongpass,'index.php',5);
 				}
 
 
@@ -191,7 +196,7 @@
 
 				//Testing if request method is Post for button submit 
 				if($_SERVER['REQUEST_METHOD'] == 'POST'){
-					
+					$userid = $_GET['userid'];
 					//variables to modify
 					$Ufnm = $_POST['fullname'];
 					$Uemail = $_POST['email'];
@@ -221,15 +226,15 @@
 					if($Uopass == $row['password']){
 
 						$stmt = $con -> prepare("Update users set FullName = ? , Email = ? , password = ? , adresse = ? , city = ? where UserID = ?");
-						$stmt -> execute(array($Ufnm, $Uemail, $Unpass, $Uadd, $Ucity,  $_SESSION['ID']));
+						$stmt -> execute(array($Ufnm, $Uemail, $Unpass, $Uadd, $Ucity,  $_GET['userid']));
 
-						echo $stmt-> rowCount();
 						$succeed = "<div class='alert alert-success alert-dismissible fade show' 	role='alert'>
 									  				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
 												    <span aria-hidden='true'>&times;</span>
 												  	</button>
-												  <strong>Well done!</strong> Your informations successfully updated.
+												  <strong>Well done!</strong> the informations successfully updated.
 												</div>";
+						redirectHome($succeed,'users.php',4);						
 					}
 					else{
 
@@ -256,7 +261,8 @@
 
 				if($count > 0){				?>
 					<!-- start html code-->
-						<h1 class="text-center">Edit User : <?php echo strtoupper($_SESSION['Username']); ?></h1>
+
+						<h1 class="text-center">Edit User : <?php echo $i = ($_GET['userid'] !== $_SESSION['ID']) ? $_GET['userid'] : strtoupper($_SESSION['Username']); ?></h1>
 						
 						<div class="container">
 								<form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
@@ -310,6 +316,13 @@
 				}	
 
 			// ******* end of case Edit **********
+				break;
+			case 'delete' : 
+			//start delete case
+				
+
+
+			// end delete case		
 				break;
 			default:
 				break;
