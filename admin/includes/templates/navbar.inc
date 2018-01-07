@@ -11,7 +11,7 @@
 				<!-- the target for the small button at small screen size -->
 			  <div class="collapse navbar-collapse" id="mainNavButton">
 			    <!-- mr-auto to do margin right auto ml-auto to do it left -->
-				<a class="nav-Brand" href="#"><?php echo lang('HomeAdmin'); ?></a>
+				<a class="nav-Brand" href="index.php"><?php echo lang('HomeAdmin'); ?></a>
 			    <ul class="navbar-nav">
 			      <li class="nav-item">
 			        <a class="nav-link" href="#"><?php echo lang('Categories'); ?></a>
