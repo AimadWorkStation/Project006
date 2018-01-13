@@ -90,6 +90,13 @@ body {
   margin-right: 6px;
 }
 
+.dashboard .dashStat .total_users, .dashboard .dashStat .pending_users, .dashboard .dashStat .total_items, .dashboard .dashStat .total_comments {
+  cursor: pointer;
+}
+.dashboard .dashStat .total_users a, .dashboard .dashStat .pending_users a, .dashboard .dashStat .total_items a, .dashboard .dashStat .total_comments a {
+  text-decoration: none;
+}
+
 .dashboard .dashStat .stat {
   background-color: white;
   padding: 60px 0px;

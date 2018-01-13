@@ -12,8 +12,11 @@
 		switch ($do) {
 			case 'Manage':
 			// ********** start users page ********
-			
-			$stmt = $con->prepare('select * from users where GroupID != 1');
+			$query = '';
+			if(isset($_GET['page'])){
+				$query = "and RegStatus = 0";
+			}
+			$stmt = $con->prepare("select * from users where GroupID != 1 $query");
 			$stmt -> execute();
 
 		?>
@@ -45,10 +48,15 @@
 									<td><?php echo $row['FullName']; ?></td>
 									<td><?php echo $row['Adresse']; ?></td>
 									<td><?php echo $row['City']; ?></td>
-									<td></td>
+									<td><?php echo $row['RegistreDate']; ?></td>
 									<td>
 										<a href="" onclick="return deletUser(<?php echo $row['UserID']; ?>);"><i class="fa fa-trash-o fa-2x fa-fw"></i></a>
 			      						<a href="users.php?do=Edit&userid=<?php  echo $row['UserID'];  ?>"><i class="fa fa-pencil-square-o fa-2x fa-fw"></i></a>
+			      						<?php 
+			      						if($row['RegStatus'] == 0) { ?>
+			      							<a href="users.php?do=Edit&userid=<?php  echo $row['UserID'];  ?>"><i class="fa fa-check-square-o fa-2x fa-fw"></i></a>		
+			      						<?php }	
+			      						 ?>
 									</td>
 								</tr>
 							<?php } ?>
@@ -144,8 +152,8 @@
 
 					try {
 					
-						$stmt = $con -> prepare("insert into users(username,password,FullName, Email,adresse, city) values(?,?,?,?,?,?)");
-						$stmt -> execute(array($username,$pass,$fullname,$email,$address,$city));
+						$stmt = $con -> prepare("insert into users(username,password,FullName, Email,adresse, city,RegStatus) values(?,?,?,?,?,?,?)");
+						$stmt -> execute(array($username,$pass,$fullname,$email,$address,$city,1));
 						
 						$succeed = "<div class='alert alert-success alert-dismissible fade show w-50 h-25 mt-5 ml-auto mr-auto' role='alert'>
 									  				<button type='button' class='close' data-dismiss='alert' aria-label='Close'>

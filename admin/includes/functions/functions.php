@@ -26,3 +26,16 @@
 		header("refresh: $second; url=$page");
 		exit();
 	}
+
+
+	/*
+	count number of items function v1.0
+	 */
+	function countItems($item,$table){
+		global $con;
+		$stmt2 = $con -> prepare("select count($item) from $table");
+		$stmt2 -> execute();
+
+		return $stmt2 -> fetchColumn();
+	}
+	

@@ -135,9 +135,29 @@ body {
 }
 
 //dashboard page
-
+%linksdecor{
+	cursor: pointer;
+	a{
+		text-decoration: none;
+		&:hover {
+			// color : white;
+		}
+	}
+}
 .dashboard{
 	.dashStat{
+		.total_users{
+			@extend %linksdecor;
+		}
+		.pending_users{
+			@extend %linksdecor;
+		}
+		.total_items{
+			@extend %linksdecor;
+		}
+		.total_comments{
+			@extend %linksdecor;
+		}
 		.stat{
 			background-color: white;
 		    padding: 60px 0px;
