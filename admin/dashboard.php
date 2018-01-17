@@ -1,4 +1,5 @@
 <?php 
+	ob_start();//to avoid the probleme of the header already sent 
 	session_start();
 	//print_r($_SESSION);
 	if(isset($_SESSION['Username'])){
@@ -26,7 +27,7 @@
 					<div class="col-md-3 stats pending_users">
 						
 							<div class="stat">Pending users
-							<span>323432</span>
+							<span><?php echo countItems('UserId','users','RegStatus',0); ?></span>
 						
 					</div></a>
 					</div>
@@ -47,9 +48,28 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="panel panel-default">
-						  <div class="panel-heading"><i class="fa fa-users"></i>  Latest Registred users</div>
+						  <div class="panel-heading"><i class="fa fa-users"></i> <?php echo $Latestnb = 5?> Latest Registred users</div>
 						  <div class="panel-body">
-						    Panel content
+						  	<div class="list-group">
+						    <?php 
+						    	$row = getlatest("UserID, Username, RegistreDate,RegStatus",'users','UserId',$Latestnb);
+						    	foreach ($row as $user) { ?>
+
+						    		 <div class="list-group-item list-group-item-action">
+
+						    		 	<span style="cursor: pointer;" title="Edit this user" class="float-left" onclick="location.href='users.php?do=Edit&userid=<?php  echo $user['UserID'];?>'"><?php echo $user['Username'];?>    --------<?php echo $user['RegistreDate'];?></span>
+						    		 	
+
+					    		 	<?php if($user['RegStatus'] == 0) { ?>
+		      							<span style="cursor: pointer;" class="float-right" title="Activate this user"  href="" id="activateuser<?php  echo $user['UserID'];  ?>" onclick="return activateuser(<?php  echo $user['UserID'];?>);"><i class="fa fa-check-square-o fa-2x fa-fw"></i></span>
+									<?php }//if ?>
+
+						    		 </div>
+						    		
+						    <?php	
+									}//foreache
+						     ?>
+						     </div>
 						  </div>
 						</div>
 					</div>
@@ -79,3 +99,5 @@
 		header('Location: index.php');	
 		exit();
 	} 
+
+	ob_end_flush();

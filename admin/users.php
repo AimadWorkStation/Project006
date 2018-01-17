@@ -50,12 +50,20 @@
 									<td><?php echo $row['City']; ?></td>
 									<td><?php echo $row['RegistreDate']; ?></td>
 									<td>
-										<a href="" onclick="return deletUser(<?php echo $row['UserID']; ?>);"><i class="fa fa-trash-o fa-2x fa-fw"></i></a>
-			      						<a href="users.php?do=Edit&userid=<?php  echo $row['UserID'];  ?>"><i class="fa fa-pencil-square-o fa-2x fa-fw"></i></a>
+										<a href="" title="Delete this user" onclick="return deletUser(<?php echo $row['UserID']; ?>);"><i class="fa fa-trash-o fa-2x fa-fw"></i></a>
+			      						<a title="Edit this user"  href="users.php?do=Edit&userid=<?php  echo $row['UserID'];  ?>"><i class="fa fa-pencil-square-o fa-2x fa-fw"></i></a>
 			      						<?php 
 			      						if($row['RegStatus'] == 0) { ?>
-			      							<a href="users.php?do=Edit&userid=<?php  echo $row['UserID'];  ?>"><i class="fa fa-check-square-o fa-2x fa-fw"></i></a>		
-			      						<?php }	
+			      							<a title="Activate this user"  href="user.php?userid=<?php  echo $row['UserID'];  ?> " id="activateuser<?php  echo $row['UserID'];  ?>" onclick="return activateuser(<?php  echo $row['UserID'];  ?>)"><i class="fa fa-check-square-o fa-2x fa-fw"></i></a>
+
+			      							<a title="Deactivate this user" style="display: none" href="user.php?userid=<?php  echo $row['UserID'];  ?>"  id="deactivateuser<?php  echo $row['UserID'];  ?>" onclick="return deactivateuser(<?php  echo $row['UserID'];  ?>)"><i class="fa fa-minus-square fa-2x fa-fw"></i></a>	
+			      						<?php }	else{ ?>
+											<a title="Deactivate this user" href="user.php?userid=<?php  echo $row['UserID'];  ?>"  id="deactivateuser<?php  echo $row['UserID'];  ?>" onclick="return deactivateuser(<?php  echo $row['UserID'];  ?>)"><i class="fa fa-minus-square fa-2x fa-fw"></i></a>
+
+											<a title="Activate this user" style="display: none" href="user.php?userid=<?php  echo $row['UserID'];  ?>" id="activateuser<?php  echo $row['UserID'];  ?>" onclick="return activateuser(<?php  echo $row['UserID'];  ?>)"><i class="fa fa-check-square-o fa-2x fa-fw"></i></a>
+			      						<?php
+			      							}//else
+			      						 
 			      						 ?>
 									</td>
 								</tr>

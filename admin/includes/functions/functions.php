@@ -29,13 +29,29 @@
 
 
 	/*
-	count number of items function v1.0
+	count number of items function v2.0
 	 */
-	function countItems($item,$table){
+	function countItems($item,$table,$fielsCondition = '0',$condition = '0'){
 		global $con;
-		$stmt2 = $con -> prepare("select count($item) from $table");
+		if($condition === '0'){
+			$stmt2 = $con -> prepare("select count($item) from $table");
+		}
+		else{
+			$stmt2 = $con -> prepare("select count($item) from $table where $fielsCondition = $condition");
+		}
+		
 		$stmt2 -> execute();
 
 		return $stmt2 -> fetchColumn();
 	}
 	
+	/*
+	get latest items v1.0
+	 */
+	function getlatest($item,$table,$order,$limit=5){
+		global $con;
+		$stmt1 = $con -> prepare("SELECT $item from $table ORDER BY $order DESC LIMIT $limit");
+		$stmt1 -> execute();
+		$row = $stmt1 -> fetchAll();
+		return $row;
+	}

@@ -30,13 +30,38 @@ $(document).ready(function() {
 });
 
 function deletUser(id){
-	myid = id;
-	$.post('deleteUser.php', {id: myid}, function(data) {
+	id = id;
+	$.post('deleteUser.php', {id: id}, function(data) {
 		if(data == 'true'){
 			//it's only for affecting the row by a smoth delete so that de element is already deleted in database even we use hide in page
-			$('.mainTable #tr'+ myid).hide(1000);
+			$('.mainTable #tr'+ id).hide(1000);
 		}
 	});
 	return false;
 }
 
+function activateuser(id){
+	$.post('userstatus.php',{id:id,stat : 'active'},function(data){
+		if(data == 'true'){
+			$('#activateuser'+ id).hide(800,function(){
+				$('#deactivateuser'+ id).show(800);
+			});
+			//this will execute only if we in the dashboard page
+			var a = $('.pending_users > a > div > span').text();
+			$('.pending_users > a > div > span').text(a-1);
+		}
+	});
+	return false;
+}
+
+function deactivateuser(id){
+	$.post('userstatus.php',{id:id,stat : 'deactive'},function(data){
+		if(data == 'true'){
+			$('#activateuser'+ id).show(800,function(){
+				$('#deactivateuser'+ id).hide(800);
+			});
+			
+		}
+	});
+	return false;
+}
